@@ -12,7 +12,7 @@ import (
 	"google.golang.org/protobuf/types/known/timestamppb"
 
 	"github.com/brianvoe/gofakeit"
-	desc "github.com/encountea/pkg/user_api_v1"
+	desc "github.com/encountea/auth/pkg/user_api_v1"
 )
 
 const grpcPort = 50051
@@ -31,13 +31,14 @@ func (s *server) Get(ctx context.Context, req *desc.GetRequest) (*desc.GetRespon
 		Role:      desc.Role_admin,
 		CreatedAt: timestamppb.New(time.Now()),
 		UpdatedAt: timestamppb.New(time.Now()),
-	}
+	}, nil
+
 }
 
 func main() {
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", grpcPort))
 	if err != nil {
-		log.Fatalf("Failed to listen: ", err)
+		log.Fatalf("Failed to listen: %v", err)
 	}
 
 	s := grpc.NewServer()
