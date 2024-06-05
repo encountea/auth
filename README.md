@@ -1,3 +1,3 @@
-# microservices_course_boilerplate
+# microservices
 
 Данный репозиторий содержит auth
